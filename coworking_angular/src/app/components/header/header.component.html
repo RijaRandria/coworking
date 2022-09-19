@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand mx-5" [routerLink]="['']"><img [src]="imageSrc" alt="" srcset="" class="img-fluid"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarColor01">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link btn" [routerLink]="['']">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" [routerLink]="['contact']">Contact</a>
+                </li>
+                <li class="nav-item" *ngIf="!isConnect">
+                    <a class="nav-link btn" (click)="open(content)">Connexion</a>
+                </li>
+                <li class="nav-item" *ngIf="!isConnect">
+                    <a class="nav-link btn" [routerLink]="['inscription']">Inscription</a>
+                </li>
+                <li class="nav-item" *ngIf="isConnect">
+                    <a class="nav-link btn" [routerLink]="['profil/', userConnect.id]">Mon compte</a>
+                </li>
+                <li class="nav-item" *ngIf="isConnect">
+                    <a class="nav-link btn" (click)="seDeco()">Se déconnecter</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="alert alert-danger m-0 text-center" role="alert" *ngIf="errorLogin">
+    Erreur d'authentification.Veuillez vous reconnecter.
+</div>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+    <form [formGroup]="form">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Connexion</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Votre email..." formControlName="email">
+            </div>
+            <div class="form-group mt-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe..." formControlName="password">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="onSubmit()" (click)="modal.dismiss('click')">Login</button>
+        </div>
+    </form>
+</ng-template>

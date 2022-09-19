@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <h1 class="text-center mt-5" *ngIf="space">Détail de l'espace "{{space.name}}"</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col mt-5">
+                <img [src]="imageSrc" alt="" srcset="" class="img-fluid img-thumbnail border-info">
+                <p class="text-center" *ngIf="space">{{ space.city }} | {{ space.department }} | {{ space.region }}</p>
+                <a href="http://{{ space.web }}" target="_blank" rel="noopener noreferrer" *ngIf="space">{{ space.web
+                    }}</a>
+            </div>
+            <div class="col mt-4">
+                <div id="map" style="width: 600; height: 400px; border: 0">
+
+                </div>
+                <p *ngIf="space">{{ space.address }} - {{ space.location }}</p>
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-info" type="submit">Réserver</button>
+    </div>
+</div>
